@@ -4,29 +4,31 @@ import io.restassured.RestAssured;
 
 public class ApiClient {
 
-    UserApiTest users;
-    OrderApiTest orders;
+    private UserApiClient users;
+    private OrdersApiClient orders;
 
-    public ApiClient(UserApiTest users, OrderApiTest orders) {
-        this.users = users;
+    private String token;
+
+    public ApiClient() {
         RestAssured.baseURI = "https://stellarburgers.nomoreparties.site";
-        this.orders = orders;
+
+        users = new UserApiClient(this);
+        orders = new OrdersApiClient(this);
     }
 
-    public OrderApiTest getOrders() {
-        return orders;
-    }
-
-    public void setOrders(OrderApiTest orders) {
-        this.orders = orders;
-    }
-
-    public UserApiTest getUsers() {
+    public UserApiClient users() {
         return users;
     }
 
-    public void setUsers(UserApiTest users) {
-        this.users = users;
+    public OrdersApiClient orders() {
+        return orders;
     }
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 }

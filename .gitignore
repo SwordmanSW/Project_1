@@ -11,6 +11,7 @@ target/
 *.iws
 *.iml
 *.ipr
+.allure
 
 ### Eclipse ###
 .apt_generated
@@ -35,6 +36,6 @@ build/
 .vscode/
 
 ### Mac OS ###
-.DS_Storeallure-report/
 allure-results/
 exportToHTML/
+.idea/

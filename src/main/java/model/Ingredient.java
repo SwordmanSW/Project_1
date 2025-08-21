@@ -1,4 +1,3 @@
-// model/Ingredient.java
 package model;
 
 public class Ingredient {
