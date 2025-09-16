@@ -5,6 +5,7 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import model.CreateOrderRequest;
 import model.Ingredient;
+import model.IngredientsResponse;
 
 import java.util.List;
 
@@ -42,9 +43,10 @@ public class OrdersApiClient {
     }
 
     private List<Ingredient> getAllIngredients() {
-        Response response = given()
-                .get("/api/ingredients");
-        return response.jsonPath().getList("data", Ingredient.class);
+        IngredientsResponse response = given()
+                .get("/api/ingredients")
+                .as(IngredientsResponse.class);
+        return response.getData();
     }
 
 }

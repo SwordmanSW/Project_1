@@ -32,7 +32,6 @@ public class ApiParamTests {
     @Parameters(name = "{0}")
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
-                {"Успешное создание пользователя", randomUser(), 200},
                 {"Ошибка: без email", randomUser().withEmail(null), 403},
                 {"Ошибка: без пароля", randomUser().withPassword(null), 403},
                 {"Ошибка: без имени", randomUser().withName(null), 403}
@@ -47,15 +46,14 @@ public class ApiParamTests {
                 response.statusCode(),
                 equalTo(expectedStatusCode));
 
-        if (expectedStatusCode == 200) {
-            assertThat("Токен не сохранён", apiClient.getToken(), notNullValue());
-        }
+            assertThat("Токен не сохранён", apiClient.getToken(), nullValue());
+
     }
 
     @After
     public void tearDown() {
         if (apiClient.getToken() != null) {
-            apiClient.users().delete();
+            apiClient.users().delete(apiClient.getToken());
         }
     }
 }

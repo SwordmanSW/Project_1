@@ -1,7 +1,11 @@
 package model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Ingredient {
-    private String _id;
+    @SerializedName("_id")
+    private String id;
+
     private String name;
     private String type;
     private int proteins;
@@ -10,13 +14,17 @@ public class Ingredient {
     private int calories;
     private int price;
     private String image;
-    private String image_mobile;
-    private String image_large;
-    private int __v;
+
+    @SerializedName("image_mobile")
+    private String imageMobile;
+    @SerializedName("image_large")
+    private String imageLarge;
+    @SerializedName("__v")
+    private int v;
 
     // Геттеры
     public String getId() {
-        return _id;
+        return id;
     }
 
     public String getType() {
@@ -27,16 +35,10 @@ public class Ingredient {
         return name;
     }
 
-    public int getPrice() {
-        return price;
-    }
-
-    // Остальные геттеры при необходимости
-
     @Override
     public String toString() {
         return "Ingredient{" +
-                "id='" + _id + '\'' +
+                "id='" + id + '\'' +
                 ", type='" + type + '\'' +
                 ", name='" + name + '\'' +
                 '}';
